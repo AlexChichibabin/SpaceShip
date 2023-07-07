@@ -64,6 +64,5 @@ public class Destructible : Entity
     {
         Destroy(gameObject);
     }
-
 }
 }
