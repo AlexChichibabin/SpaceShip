@@ -48,6 +48,12 @@ namespace SpaceShip
         private void ControlMobile()
         {
             Vector3 dir = m_MobileJoystick.Value;
+
+            var dot = Vector2.Dot(dir, m_TargetShip.transform.up);
+            var dot2 = Vector2.Dot(dir, m_TargetShip.transform.right);
+
+            m_TargetShip.ThrustControl = Mathf.Max(0, dot);
+            m_TargetShip.TorqueControl = -dot2;
         }
 
         private void ControlKeyboard()
