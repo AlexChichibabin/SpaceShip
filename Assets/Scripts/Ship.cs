@@ -48,28 +48,7 @@ namespace SpaceShip
             UpdateRigidBody();
         }
 
-        private void Update()
-        {
-            ThrustControl = 0;
-            TorqueControl = 0;
 
-            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-            {
-                ThrustControl = 1.0f;
-            }
-            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
-            {
-                ThrustControl = -1.0f;
-            }
-            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-            {
-                TorqueControl = 1.0f;
-            }
-            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-            {
-                TorqueControl = -1.0f;
-            }
-        }
         #endregion
 
         /// <summary>
