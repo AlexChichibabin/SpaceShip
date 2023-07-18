@@ -15,7 +15,7 @@ namespace SpaceShip
         [SerializeField] private float m_CameraZOffset;
         [SerializeField] private float m_ForwardOffset;
 
-        private void Update()
+        private void FixedUpdate()
         {
             if(m_Camera == null || m_Target == null) return;
 

@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SyncTransform : MonoBehaviour
+namespace SpaceShip
 {
-    // Start is called before the first frame update
-    void Start()
+    [RequireComponent(typeof(BackgroundElement))]
+    public class SyncTransform : MonoBehaviour
     {
-        
-    }
+        private Ship m_ship;
+        private Transform m_transform;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Start()
+        {
+            m_transform = GetComponent<Transform>();
+            m_ship = FindFirstObjectByType<Ship>();
+        }
+
+        private void Update()
+        {
+            m_transform.position = new Vector3(m_ship.transform.position.x, m_ship.transform.position.y, m_transform.position.z);
+        }
     }
 }
