@@ -7,18 +7,11 @@ namespace SpaceShip
     [RequireComponent(typeof(BackgroundElement))]
     public class SyncTransform : MonoBehaviour
     {
-        private Ship m_ship;
-        private Transform m_transform;
-
-        private void Start()
-        {
-            m_transform = GetComponent<Transform>();
-            m_ship = FindFirstObjectByType<Ship>();
-        }
+        [SerializeField] private Transform m_Target;
 
         private void Update()
         {
-            m_transform.position = new Vector3(m_ship.transform.position.x, m_ship.transform.position.y, m_transform.position.z);
+            transform.position = new Vector3(m_Target.transform.position.x, m_Target.transform.position.y, transform.position.z);
         }
     }
 }
