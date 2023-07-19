@@ -12,6 +12,8 @@ namespace SpaceShip
             Mobile
         }
         [SerializeField] private Ship m_TargetShip;
+        public void SetTargetShip(Ship ship) => m_TargetShip = ship;
+
         [SerializeField] private VirtualJoystick m_MobileJoystick;
 
         [SerializeField] private ControlMode m_ControlMode;

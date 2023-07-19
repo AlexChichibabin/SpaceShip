@@ -28,5 +28,10 @@ namespace SpaceShip
             m_Camera.transform.rotation = Quaternion.Slerp(m_Camera.transform.rotation, m_Target.transform.rotation, 
                                                                             m_InterpolationAngular * Time.deltaTime);
         }
+
+        public void SetTarget(Transform newTarget)
+        {
+            m_Target = newTarget;
+        }
     }
 }

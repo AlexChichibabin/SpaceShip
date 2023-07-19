@@ -1,68 +1,74 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 
-namespace SpaceShip 
-{ 
-/// <summary>
-/// some destructible object that can own hitpoints
-/// </summary>
-public class Destructible : Entity
+namespace SpaceShip
 {
-    #region Properties
     /// <summary>
-    /// object ignores damages
+    /// some destructible object that can own hitpoints
     /// </summary>
-    [SerializeField] private bool m_Indestructible;
-    public bool IsIndestructible => m_Indestructible;
-
-    /// <summary>
-    /// start hitpoints amount
-    /// </summary>
-    [SerializeField] private int m_HitPoints;
-
-    /// <summary>
-    /// current hitpoints amount
-    /// </summary>
-    private int m_CurrentHitPoints;
-    public int CurrentHitPoints => m_CurrentHitPoints;
-
-    #endregion
-
-    #region Unity Events
-
-    protected virtual void Start()
+    public class Destructible : Entity
     {
-        m_CurrentHitPoints = m_HitPoints;
-    }
+        #region Properties
+        /// <summary>
+        /// object ignores damages
+        /// </summary>
+        [SerializeField] private bool m_Indestructible;
+        public bool IsIndestructible => m_Indestructible;
 
-    #endregion
+        /// <summary>
+        /// start hitpoints amount
+        /// </summary>
+        [SerializeField] private int m_HitPoints;
 
-    #region Public API
+        /// <summary>
+        /// current hitpoints amount
+        /// </summary>
+        private int m_CurrentHitPoints;
+        public int CurrentHitPoints => m_CurrentHitPoints;
 
-    /// <summary>
-    /// apply damage to object
-    /// </summary>
-    /// <param name="damage"></param>
-    public void ApplyDamage(int damage)
-    {
-        if(m_Indestructible) return;
+        #endregion
 
-        m_CurrentHitPoints -= damage;
+        #region Unity Events
 
-        if (m_CurrentHitPoints <= 0)
+        protected virtual void Start()
         {
-            OnDeath();
+            m_CurrentHitPoints = m_HitPoints;
         }
-    }
 
-    #endregion
+        #endregion
 
-    /// <summary>
-    /// virtual event of object destroy, when current hitpoints becomes below or equal zero
-    /// </summary>
-    protected virtual void OnDeath()
-    {
-        Destroy(gameObject);
+        #region Public API
+
+        /// <summary>
+        /// apply damage to object
+        /// </summary>
+        /// <param name="damage"></param>
+        public void ApplyDamage(int damage)
+        {
+            if (m_Indestructible) return;
+
+            m_CurrentHitPoints -= damage;
+
+            if (m_CurrentHitPoints <= 0)
+            {
+                OnDeath();
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// virtual event of object destroy, when current hitpoints becomes below or equal zero
+        /// </summary>
+        protected virtual void OnDeath()
+        {
+            Destroy(gameObject);
+
+            m_EventOnDeath?.Invoke();
+        }
+
+        [SerializeField] private UnityEvent m_EventOnDeath;
+        public UnityEvent EventOnDeath => m_EventOnDeath;
     }
-}
 }

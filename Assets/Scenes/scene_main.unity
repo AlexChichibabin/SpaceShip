@@ -586,6 +586,7 @@ GameObject:
   - component: {fileID: 961161532}
   - component: {fileID: 961161531}
   - component: {fileID: 961161533}
+  - component: {fileID: 961161534}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -641,6 +642,23 @@ MonoBehaviour:
   m_InterpolationAngular: 41.4
   m_CameraZOffset: -10
   m_ForwardOffset: 3
+--- !u!114 &961161534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961161530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6063dea28e4675e40bcc32478a5bd988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NumLives: 3
+  m_Ship: {fileID: 465447389}
+  m_PlayerShipPrefab: {fileID: 9112861442420955339, guid: 4c93c9e55dd55434dabfaeee8f24998b, type: 3}
+  m_CameraController: {fileID: 961161533}
+  m_MovementController: {fileID: 961161531}
 --- !u!1 &1131870354
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,6 +727,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1164128348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1164128349}
+  - component: {fileID: 1164128350}
+  m_Layer: 0
+  m_Name: LevelBoundary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1164128349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164128348}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1164128350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164128348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeceb5b75c29fa4caff393b1db39ec2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DoNotDestroyOnLoad: 0
+  m_Radius: 34.3
+  m_Mode: 0
 --- !u!1 &1446456979
 GameObject:
   m_ObjectHideFlags: 0
