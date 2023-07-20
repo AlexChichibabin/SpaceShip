@@ -37,5 +37,6 @@ namespace SpaceShip
             m_MovementController.SetTargetShip(m_Ship);
             m_Ship.EventOnDeath.AddListener(OnShipDeath);
         }
+
     }
 }

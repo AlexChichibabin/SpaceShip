@@ -370,6 +370,7 @@ MonoBehaviour:
   m_Mobility: 300
   m_MaxLinearVelocity: 15
   m_MaxAngularVelocity: 290
+  m_PrefabExplosion: {fileID: 8017063193375513133, guid: 6a0c652fb25a03c488eb398897820193, type: 3}
 --- !u!114 &1492587101431947231
 MonoBehaviour:
   m_ObjectHideFlags: 0

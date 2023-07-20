@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 namespace SpaceShip
 {
@@ -33,6 +34,7 @@ namespace SpaceShip
         /// saved link for rigid
         /// </summary>
         private Rigidbody2D m_Rigid;
+        [SerializeField] private GameObject m_PrefabExplosion;
 
         #region Unity Events
         protected override void Start()
@@ -47,8 +49,6 @@ namespace SpaceShip
         {
             UpdateRigidBody();
         }
-
-
         #endregion
 
         /// <summary>
@@ -74,6 +74,12 @@ namespace SpaceShip
         /// torque control. from -1.0 to +1.0
         /// </summary>
         public float TorqueControl { get; set; }
+
+        protected override void OnDeath()
+        {
+            base.OnDeath();
+            Instantiate(m_PrefabExplosion, LastPosition, Quaternion.identity);
+        }
 
 
         #endregion

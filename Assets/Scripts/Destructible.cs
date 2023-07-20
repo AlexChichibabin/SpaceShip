@@ -27,6 +27,12 @@ namespace SpaceShip
         private int m_CurrentHitPoints;
         public int CurrentHitPoints => m_CurrentHitPoints;
 
+        /// <summary>
+        ///  last position value before death
+        /// </summary>
+        private Vector3 m_LastPosition;
+        public Vector3 LastPosition => m_LastPosition;
+
         #endregion
 
         #region Unity Events
@@ -63,6 +69,8 @@ namespace SpaceShip
         /// </summary>
         protected virtual void OnDeath()
         {
+            m_LastPosition = gameObject.transform.position;
+
             Destroy(gameObject);
 
             m_EventOnDeath?.Invoke();
