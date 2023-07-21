@@ -6,6 +6,61 @@ namespace SpaceShip
 {
     public class Turret : MonoBehaviour
     {
-        
+        #region Parameters
+        [SerializeField] private TurretMode m_Mode;
+        public TurretMode Mode => m_Mode;
+
+        [SerializeField] private TurretProperties m_TurretProperties;
+
+        [SerializeField] private Transform m_FireSource;
+
+        private float m_RefireTimer;
+
+        public bool CanFire => m_RefireTimer <= 0;
+
+        private Ship m_Ship;
+        #endregion
+
+        #region UnityEvents
+        private void Start()
+        {
+            m_Ship = transform.root.GetComponent<Ship>();
+        }
+
+        private void Update()
+        {
+            if (m_RefireTimer > 0)
+            {
+                m_RefireTimer -= Time.deltaTime;
+            }
+        }
+        #endregion
+
+        #region PublicAPI
+        public void Fire()
+        {
+            if (m_TurretProperties == null) return;
+            if (m_RefireTimer > 0) return;
+
+            Projectile projectile = Instantiate(m_TurretProperties.ProjectilePrefab).GetComponent<Projectile>();
+            projectile.transform.position = m_FireSource.transform.position;
+            projectile.transform.up = m_FireSource.transform.up;
+
+            m_RefireTimer = m_TurretProperties.RateOfFire;
+
+            {
+                ///SFX
+            }
+        }
+
+        public void AssignLoadout(TurretProperties props)
+        {
+            if (m_Mode != props.Mode) return;
+
+            m_RefireTimer = 0;
+            m_TurretProperties = props;
+        }
+
+        #endregion
     }
 }
