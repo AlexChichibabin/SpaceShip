@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6314328125247195456}
-  - component: {fileID: 2199934100088346108}
+  - component: {fileID: 1094752188972467462}
   m_Layer: 0
   m_Name: SecondaryTurret_01
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 7984653528021756104}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2199934100088346108
+--- !u!114 &1094752188972467462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Mode: 1
-  m_TurretProperties: {fileID: 11400000, guid: df04a01ed6bb086448b96d3e19d27998, type: 2}
+  m_TurretProperties: {fileID: 0}
   m_FireSource: {fileID: 6314328125247195456}
 --- !u!1 &1295373586489024506
 GameObject:
@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Turrets:
   - {fileID: 2821783139057989564}
   - {fileID: 1819176540182073724}
-  - {fileID: 2199934100088346108}
+  - {fileID: 1094752188972467462}
   m_MaxEnergy: 100
   m_MaxAmmo: 30
   m_EnergyRegenPerSecond: 1
