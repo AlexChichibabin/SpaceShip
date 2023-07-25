@@ -26,12 +26,12 @@ Transform:
   m_GameObject: {fileID: 1574419404618108747}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6288193033400822501}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2538873075189020662
 MonoBehaviour:
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Nickname: 
   m_Velocity: 100
   m_LifeTime: 2.6
-  m_Damage: 0
+  m_Damage: 165
   m_ImpactEffectPrefab: {fileID: 0}
 --- !u!1 &7077744475587756196
 GameObject:

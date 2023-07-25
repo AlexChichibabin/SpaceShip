@@ -42,9 +42,14 @@ namespace SpaceShip
             if (m_TurretProperties == null) return;
             if (m_RefireTimer > 0) return;
 
+            if(m_Ship.DrawEnergy(m_TurretProperties.EnergyUsage) == false) return;
+            if (m_Ship.DrawAmmo(m_TurretProperties.AmmoUsage) == false) return;
+
             Projectile projectile = Instantiate(m_TurretProperties.ProjectilePrefab).GetComponent<Projectile>();
             projectile.transform.position = m_FireSource.transform.position;
             projectile.transform.up = m_FireSource.transform.up;
+
+            projectile.SetParentShooter(m_Ship);
 
             m_RefireTimer = m_TurretProperties.RateOfFire;
 
