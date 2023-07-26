@@ -53,7 +53,13 @@ namespace SpaceShip
             UpdateRigidBody();
 
             UpdateEnergyRegen();
+
+            CheckIndestructibility();
+
+            CheckAcceleration();
         }
+
+
         #endregion
 
         /// <summary>
@@ -79,18 +85,6 @@ namespace SpaceShip
         /// torque control. from -1.0 to +1.0
         /// </summary>
         public float TorqueControl { get; set; }
-
-        protected override void OnDeath()
-        {
-            base.OnDeath();
-            Instantiate(m_PrefabExplosion, LastPosition, Quaternion.identity);
-        }
-
-
-        #endregion
-
-        [SerializeField] private Turret[] m_Turrets;
-
         public void Fire(TurretMode mode)
         {
             for (int i = 0; i < m_Turrets.Length; i++)
@@ -101,14 +95,6 @@ namespace SpaceShip
                 }
             }
         }
-
-        [SerializeField] private int m_MaxEnergy;
-        [SerializeField] private int m_MaxAmmo;
-        [SerializeField] private int m_EnergyRegenPerSecond;
-
-        private float m_PrimaryEnergy;
-        private int m_SecondaryAmmo;
-
         public void AddEnergy(int energy)
         {
             m_PrimaryEnergy = Mathf.Clamp(m_PrimaryEnergy + energy, 0, m_MaxEnergy);
@@ -117,17 +103,12 @@ namespace SpaceShip
         {
             m_SecondaryAmmo = Mathf.Clamp(m_SecondaryAmmo + ammo, 0, m_MaxAmmo);
         }
-        private void InitOffensive()
+        public void AddThrust(int thrust)
         {
-            m_PrimaryEnergy = m_MaxEnergy;
-            m_SecondaryAmmo = m_MaxAmmo;
+            m_Thrust += thrust;
+            m_AccelerationValue = thrust;
+            m_Accelerated = true;
         }
-        private void UpdateEnergyRegen()
-        {
-            //m_PrimaryEnergy += (float)m_EnergyRegenPerSecond * Time.fixedDeltaTime;
-            m_PrimaryEnergy = Mathf.Clamp(m_PrimaryEnergy + (float)m_EnergyRegenPerSecond * Time.fixedDeltaTime, 0, m_MaxEnergy);
-        }
-
         public bool DrawEnergy(int count)
         {
             if (count == 0)
@@ -154,6 +135,48 @@ namespace SpaceShip
             }
             return false;
         }
+        public void DrawThrust(int thrust)
+        {
+            m_Thrust -= thrust;
+            m_Accelerated = false;
+        }
+        public void SetIndestructibilityTimer(float timer)
+        {
+            m_IndestructibilityTimer = timer;
+        }
+        public void SetAccelerationTimer(float timer)
+        {
+            m_AccelerationTimer = timer;
+        }
+
+
+        #endregion
+
+        protected override void OnDeath()
+        {
+            base.OnDeath();
+            Instantiate(m_PrefabExplosion, LastPosition, Quaternion.identity);
+        }
+
+        #region EnergyAmmoWeapons
+        [SerializeField] private Turret[] m_Turrets;
+        [SerializeField] private int m_MaxEnergy;
+        [SerializeField] private int m_MaxAmmo;
+        [SerializeField] private int m_EnergyRegenPerSecond;
+
+        private float m_PrimaryEnergy;
+        private int m_SecondaryAmmo;
+
+        private void InitOffensive()
+        {
+            m_PrimaryEnergy = m_MaxEnergy;
+            m_SecondaryAmmo = m_MaxAmmo;
+        }
+        private void UpdateEnergyRegen()
+        {
+            //m_PrimaryEnergy += (float)m_EnergyRegenPerSecond * Time.fixedDeltaTime;
+            m_PrimaryEnergy = Mathf.Clamp(m_PrimaryEnergy + (float)m_EnergyRegenPerSecond * Time.fixedDeltaTime, 0, m_MaxEnergy);
+        }
 
         public void AssignWeapon(TurretProperties props)
         {
@@ -162,6 +185,38 @@ namespace SpaceShip
                 m_Turrets[i].AssignLoadout(props);
             }
         }
+        #endregion
+
+        #region Indestructibility
+        private float m_IndestructibilityTimer;
+        private void CheckIndestructibility()
+        {
+            if (m_IndestructibilityTimer > 0)
+            {
+                m_IndestructibilityTimer -= Time.deltaTime;
+            }
+            if (m_IndestructibilityTimer <= 0)
+            {
+                SetIndestructibility(false);
+            }
+        }
+        #endregion
+        #region Acceleration
+        private float m_AccelerationTimer;
+        private int m_AccelerationValue;
+        private bool m_Accelerated;
+        private void CheckAcceleration()
+        {
+            if (m_AccelerationTimer > 0)
+            {
+                m_AccelerationTimer -= Time.deltaTime;
+            }
+            if (m_Accelerated == true && m_AccelerationTimer <= 0)
+            {
+                DrawThrust(m_AccelerationValue);
+            }
+        }
+        #endregion
     }
 }
 

@@ -9,12 +9,16 @@ namespace SpaceShip
         public enum EffectType
         {
             AddAmmo,
-            AddEnergy
+            AddEnergy,
+            Indestructibility,
+            Acceleration
         }
 
         [SerializeField] private EffectType m_EffectType;
 
         [SerializeField] private float m_Value;
+
+        [SerializeField] private float m_EffectDuration;
 
         protected override void OnPickedUp(Ship ship)
         {
@@ -26,6 +30,17 @@ namespace SpaceShip
             if (m_EffectType == EffectType.AddAmmo)
             {
                 ship.AddAmmo((int)m_Value);
+            }
+
+            if (m_EffectType == EffectType.Indestructibility)
+            {
+                ship.SetIndestructibilityTimer(m_EffectDuration);
+                ship.SetIndestructibility(true);
+            }
+            if (m_EffectType == EffectType.Acceleration)
+            {
+                ship.SetAccelerationTimer(m_EffectDuration);
+                ship.AddThrust((int)m_Value);
             }
         }
     }

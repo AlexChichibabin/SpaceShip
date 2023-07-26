@@ -510,9 +510,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Mass: 1
-  m_Thrust: 500
-  m_Mobility: 300
-  m_MaxLinearVelocity: 15
+  m_Thrust: 125
+  m_Mobility: 90
+  m_MaxLinearVelocity: 10
   m_MaxAngularVelocity: 290
   m_PrefabExplosion: {fileID: 433130068208647672, guid: f643fd930479f9349b41f399d74b400b, type: 3}
   m_Turrets:

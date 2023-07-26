@@ -62,6 +62,11 @@ namespace SpaceShip
             }
         }
 
+        public void SetIndestructibility(bool indestructible)
+        {
+            m_Indestructible = indestructible;
+        }
+
         #endregion
 
         /// <summary>
