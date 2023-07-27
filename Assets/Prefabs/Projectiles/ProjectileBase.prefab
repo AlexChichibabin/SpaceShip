@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Nickname: 
   m_Velocity: 100
-  m_LifeTime: 2.6
-  m_Damage: 165
+  m_LifeTime: 8
+  m_Damage: 50
   m_ImpactEffectPrefab: {fileID: 0}
 --- !u!1 &7077744475587756196
 GameObject:

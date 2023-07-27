@@ -9,7 +9,7 @@ namespace SpaceShip
         [SerializeField] private float m_Velocity;
         [SerializeField] private float m_LifeTime;
         [SerializeField] private int m_Damage;
-        [SerializeField] private ImpactEffect m_ImpactEffectPrefab;
+        [SerializeField] private ImpactExplosion m_ImpactExplosionPrefab;
 
         private float m_Timer;
 
@@ -30,6 +30,8 @@ namespace SpaceShip
                 }
                 OnProjectileLifeEnd(hit.collider, hit.point);
             }
+            
+
 
             m_Timer += Time.deltaTime;
             if (m_Timer > m_LifeTime) Destroy(gameObject);
@@ -39,7 +41,8 @@ namespace SpaceShip
 
         private void OnProjectileLifeEnd(Collider2D col, Vector2 pos)
         {
-            //Instantiate(m_ImpactEffectPrefab, pos, Quaternion.identity);
+            Instantiate(m_ImpactExplosionPrefab, pos, Quaternion.identity);
+
             Destroy(gameObject);
         }
 

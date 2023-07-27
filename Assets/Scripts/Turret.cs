@@ -14,6 +14,10 @@ namespace SpaceShip
 
         [SerializeField] private Transform m_FireSource;
 
+        [SerializeField] private GameObject m_ImpactSoundPrimary;
+
+        [SerializeField] private GameObject m_ImpactSoundSecondary;
+
         private float m_RefireTimer;
 
         public bool CanFire => m_RefireTimer <= 0;
@@ -53,8 +57,13 @@ namespace SpaceShip
 
             m_RefireTimer = m_TurretProperties.RateOfFire;
 
+            if(m_Mode == TurretMode.Primary)
             {
-                ///SFX
+                Instantiate(m_ImpactSoundPrimary, projectile.transform.position, Quaternion.identity);
+            }
+            if (m_Mode == TurretMode.Secondary)
+            {
+                Instantiate(m_ImpactSoundSecondary, projectile.transform.position, Quaternion.identity);
             }
         }
 

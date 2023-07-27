@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Mode: 1
   m_TurretProperties: {fileID: 0}
   m_FireSource: {fileID: 6314328125247195456}
+  m_ImpactSoundPrimary: {fileID: 0}
+  m_ImpactSoundSecondary: {fileID: 7258211854605291204, guid: c1428565ae4af57498fa90a6b63bcea3, type: 3}
 --- !u!1 &1295373586489024506
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,6 +379,8 @@ MonoBehaviour:
   m_Mode: 0
   m_TurretProperties: {fileID: 11400000, guid: bff1e6be9503e41458090e5349e137a7, type: 2}
   m_FireSource: {fileID: 534171438686127185}
+  m_ImpactSoundPrimary: {fileID: 3688279858511012773, guid: 57a841a768fcc9c46a6336a373842914, type: 3}
+  m_ImpactSoundSecondary: {fileID: 0}
 --- !u!1 &2815623884063289521
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,6 +428,8 @@ MonoBehaviour:
   m_Mode: 0
   m_TurretProperties: {fileID: 11400000, guid: bff1e6be9503e41458090e5349e137a7, type: 2}
   m_FireSource: {fileID: 4000797332682319833}
+  m_ImpactSoundPrimary: {fileID: 3688279858511012773, guid: 57a841a768fcc9c46a6336a373842914, type: 3}
+  m_ImpactSoundSecondary: {fileID: 0}
 --- !u!1 &9112861442420955339
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +468,7 @@ Transform:
   - {fileID: 534171438686127185}
   - {fileID: 6314328125247195456}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &8267418339509196145
 Rigidbody2D:
@@ -514,14 +520,14 @@ MonoBehaviour:
   m_Mobility: 90
   m_MaxLinearVelocity: 10
   m_MaxAngularVelocity: 290
-  m_PrefabExplosion: {fileID: 433130068208647672, guid: f643fd930479f9349b41f399d74b400b, type: 3}
+  m_PrefabExplosion: {fileID: 2122294592484191108, guid: a1cdcb431849add449a6d225e70a1c04, type: 3}
   m_Turrets:
   - {fileID: 2821783139057989564}
   - {fileID: 1819176540182073724}
   - {fileID: 1094752188972467462}
-  m_MaxEnergy: 100
+  m_MaxEnergy: 200
   m_MaxAmmo: 30
-  m_EnergyRegenPerSecond: 1
+  m_EnergyRegenPerSecond: 2
 --- !u!114 &1492587101431947231
 MonoBehaviour:
   m_ObjectHideFlags: 0
