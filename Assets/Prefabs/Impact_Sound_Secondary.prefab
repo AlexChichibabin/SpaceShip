@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6493771907495952202}
   - component: {fileID: 4920089196709217352}
+  - component: {fileID: -201928659337511520}
   m_Layer: 0
   m_Name: Impact_Sound_Secondary
   m_TagString: Untagged
@@ -128,3 +129,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-201928659337511520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7258211854605291204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10d958b1f486a9f4b95558283ab7fd94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LifeTime: 3

@@ -18,12 +18,12 @@ namespace SpaceShip
         {
             for (int i = 0; i < m_NumDebris; i++)
             {
-                SpawnDebris();
+                SpawnDebris(i);
             }
 
         }
 
-        private void SpawnDebris()
+        private void SpawnDebris(int i)
         {
             int index = Random.Range(0, m_DebrisPrefabs.Length);
 
@@ -31,6 +31,8 @@ namespace SpaceShip
 
             debris.transform.position = m_Area.GetRandomInsideZone();
             debris.GetComponent<Destructible>().EventOnDeath.AddListener(OnDebrisDead);
+            debris.AddComponent<LevelBoundaryLimiter>();
+            debris.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360) * i));
 
             Rigidbody2D rb = debris.GetComponent<Rigidbody2D>();
 
@@ -43,7 +45,7 @@ namespace SpaceShip
 
         private void OnDebrisDead()
         {
-            SpawnDebris();
+            SpawnDebris(Random.Range(0, 3));
         }
     }
 }

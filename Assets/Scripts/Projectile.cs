@@ -26,12 +26,13 @@ namespace SpaceShip
 
                 if (dest != null && dest != m_Parent)
                 {
-                    dest.ApplyDamage(m_Damage);
+                    if (m_ImpactExplosionPrefab == null)
+                    {
+                        dest.ApplyDamage(m_Damage);
+                    } 
                 }
                 OnProjectileLifeEnd(hit.collider, hit.point);
             }
-            
-
 
             m_Timer += Time.deltaTime;
             if (m_Timer > m_LifeTime) Destroy(gameObject);
@@ -41,8 +42,11 @@ namespace SpaceShip
 
         private void OnProjectileLifeEnd(Collider2D col, Vector2 pos)
         {
-            Instantiate(m_ImpactExplosionPrefab, pos, Quaternion.identity);
-
+            if (m_ImpactExplosionPrefab != null)
+            {
+                Instantiate(m_ImpactExplosionPrefab, pos, Quaternion.identity);
+            }
+            
             Destroy(gameObject);
         }
 

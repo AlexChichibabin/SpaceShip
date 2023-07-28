@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7197367409701734867}
   - component: {fileID: 4975900534125600863}
-  - component: {fileID: 9119381263383392299}
+  - component: {fileID: 6723959638228537753}
   m_Layer: 0
   m_Name: VisualModel
   m_TagString: Untagged
@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 2549880135695206082}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.51, y: 0.51, z: 0.51}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7058499403843849823}
   m_RootOrder: -1
@@ -74,19 +74,19 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6dcd63f445d03c9439efdec08987de10, type: 3}
-  m_Color: {r: 1, g: 0.37254906, b: 0.37806526, a: 1}
+  m_Sprite: {fileID: 21300000, guid: abb98ae72c287ce45a62fa46262b8304, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 1
-  m_Size: {x: 2, y: 2}
+  m_DrawMode: 0
+  m_Size: {x: 3.25, y: 3.57}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &9119381263383392299
-CircleCollider2D:
+--- !u!60 &6723959638228537753
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -118,8 +118,25 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1
+  m_SpriteTilingProperty:
+    border: {x: 2.9299998, y: 0, z: 2.9199998, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.25, y: 3.57}
+    newSize: {x: 3.25, y: 3.57}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.0669825, y: -1.86333}
+      - {x: -1.0289791, y: -1.5822972}
+      - {x: -1.8177116, y: 0.6348816}
+      - {x: -1.1362946, y: 1.3925937}
+      - {x: 0.13222194, y: 1.9041768}
+      - {x: 1.5734762, y: 1.1861199}
+      - {x: 1.2344472, y: -0.70972013}
+  m_UseDelaunayMesh: 0
 --- !u!1 &3545683493928132834
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,8 +148,9 @@ GameObject:
   - component: {fileID: 7058499403843849823}
   - component: {fileID: 3779866831952135802}
   - component: {fileID: 6041216003885881332}
+  - component: {fileID: 4684729672721082345}
   m_Layer: 0
-  m_Name: Asteroid
+  m_Name: Asteroid_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +170,7 @@ Transform:
   m_Children:
   - {fileID: 7197367409701734867}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &3779866831952135802
 Rigidbody2D:
@@ -199,3 +217,24 @@ MonoBehaviour:
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &4684729672721082345
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3545683493928132834}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4e892c5c0514d764fad410ef4b283e98, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

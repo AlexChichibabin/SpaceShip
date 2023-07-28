@@ -10,6 +10,8 @@ namespace SpaceShip
         [SerializeField] private TurretMode m_Mode;
         public TurretMode Mode => m_Mode;
 
+        [SerializeField] private float m_FireDelay;
+
         [SerializeField] private TurretProperties m_TurretProperties;
 
         [SerializeField] private Transform m_FireSource;

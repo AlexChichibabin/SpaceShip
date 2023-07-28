@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3464411498319175705}
   - component: {fileID: 71325660381653370}
   - component: {fileID: 468785842512477285}
+  - component: {fileID: 1651741687349807832}
   m_Layer: 0
   m_Name: AccelerationPowerup
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 7146972524480884139}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &71325660381653370
 CircleCollider2D:
@@ -84,6 +85,27 @@ MonoBehaviour:
   m_EffectType: 3
   m_Value: 1095
   m_EffectDuration: 4.99
+--- !u!95 &1651741687349807832
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924229438494035173}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4e892c5c0514d764fad410ef4b283e98, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2389541883511885706
 GameObject:
   m_ObjectHideFlags: 0
