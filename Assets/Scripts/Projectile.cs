@@ -10,6 +10,12 @@ namespace SpaceShip
         [SerializeField] private float m_LifeTime;
         [SerializeField] private int m_Damage;
         [SerializeField] private ImpactExplosion m_ImpactExplosionPrefab;
+        [SerializeField] private bool IsSelfDirected;
+        [SerializeField] private float m_DirSensity;
+        private GameObject m_RocketTarget;
+        [SerializeField] private CircleArea m_Area;
+
+
 
         private float m_Timer;
 
@@ -38,6 +44,23 @@ namespace SpaceShip
             if (m_Timer > m_LifeTime) Destroy(gameObject);
 
             transform.position += new Vector3(step.x, step.y, 0);
+
+            if (IsSelfDirected == true)
+            {
+                if (m_RocketTarget == null)
+                {
+                    Collider2D targetHit = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y), m_Area.Radius);
+                    if (m_RocketTarget == m_Parent) return;
+                    m_RocketTarget = targetHit.transform.gameObject;
+                    if (m_RocketTarget == null) return;
+                }
+                if (m_RocketTarget != null)
+                {
+                    Vector3 dir = (m_RocketTarget.transform.position - transform.position).normalized;
+                    transform.up = Vector3.Slerp(transform.up, dir, Time.deltaTime* m_DirSensity);
+                }
+            }
+            
         }
 
         private void OnProjectileLifeEnd(Collider2D col, Vector2 pos)
