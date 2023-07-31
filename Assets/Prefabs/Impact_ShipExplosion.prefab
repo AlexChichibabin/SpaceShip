@@ -4921,7 +4921,7 @@ GameObject:
   - component: {fileID: -8286805149177328067}
   - component: {fileID: -5573501783254280119}
   m_Layer: 0
-  m_Name: SmallExplosion
+  m_Name: Impact_ShipExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

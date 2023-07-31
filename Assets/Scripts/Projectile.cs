@@ -9,6 +9,7 @@ namespace SpaceShip
         [SerializeField] private float m_Velocity;
         [SerializeField] private float m_LifeTime;
         [SerializeField] private int m_Damage;
+        public int Damage => m_Damage;
         [SerializeField] private ImpactExplosion m_ImpactExplosionPrefab;
         [SerializeField] private bool IsSelfDirected;
         [SerializeField] private float m_DirSensity;
@@ -35,7 +36,7 @@ namespace SpaceShip
                     if (m_ImpactExplosionPrefab == null)
                     {
                         dest.ApplyDamage(m_Damage);
-                    } 
+                    }
                 }
                 OnProjectileLifeEnd(hit.collider, hit.point);
             }
@@ -49,18 +50,13 @@ namespace SpaceShip
             {
                 if (m_RocketTarget == null)
                 {
-                    Collider2D targetHit = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y), m_Area.Radius);
-                    if (m_RocketTarget == m_Parent) return;
-                    m_RocketTarget = targetHit.transform.gameObject;
-                    if (m_RocketTarget == null) return;
+                    GetTarget();
                 }
                 if (m_RocketTarget != null)
                 {
-                    Vector3 dir = (m_RocketTarget.transform.position - transform.position).normalized;
-                    transform.up = Vector3.Slerp(transform.up, dir, Time.deltaTime* m_DirSensity);
+                    CorrectDirection();
                 }
             }
-            
         }
 
         private void OnProjectileLifeEnd(Collider2D col, Vector2 pos)
@@ -69,7 +65,7 @@ namespace SpaceShip
             {
                 Instantiate(m_ImpactExplosionPrefab, pos, Quaternion.identity);
             }
-            
+
             Destroy(gameObject);
         }
 
@@ -79,5 +75,21 @@ namespace SpaceShip
         {
             m_Parent = parent;
         }
+
+        private void GetTarget()
+        {
+                Collider2D targetHit = Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y), m_Area.Radius);
+                if (targetHit != null && targetHit.transform.root.GetComponent<Destructible>() != m_Parent)
+                {
+                    m_RocketTarget = targetHit.transform.gameObject;
+                }
+                if (m_RocketTarget == null) return;
+        }
+        private void CorrectDirection()
+        {
+                Vector3 dir = (m_RocketTarget.transform.position - transform.position).normalized;
+                transform.up = Vector3.Slerp(transform.up, dir, Time.deltaTime * m_DirSensity);
+        }
+
     }
 }

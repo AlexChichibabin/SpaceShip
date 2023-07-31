@@ -7,8 +7,14 @@ namespace SpaceShip
     [RequireComponent(typeof(CircleCollider2D))]
     public class ImpactExplosion : ImpactEffect
     {
-        [SerializeField] private int m_Damage;
         [SerializeField] private float m_Radius;
+        [SerializeField] private Projectile m_Projectile;
+        private int m_Damage;
+
+        private void Start()
+        {
+            m_Damage = m_Projectile.Damage;
+        }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {

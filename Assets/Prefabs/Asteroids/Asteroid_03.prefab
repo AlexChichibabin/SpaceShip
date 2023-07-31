@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 8554944743166897371}
   - component: {fileID: 3815695548019532079}
   - component: {fileID: 3427449700166261544}
-  - component: {fileID: 3549533996570297907}
+  - component: {fileID: 8366584801017139193}
+  - component: {fileID: 1290483968499606179}
   m_Layer: 0
   m_Name: Asteroid_03
   m_TagString: Untagged
@@ -80,27 +81,34 @@ MonoBehaviour:
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls: []
---- !u!95 &3549533996570297907
-Animator:
-  serializedVersion: 5
+--- !u!114 &8366584801017139193
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4121768693517471404}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4e892c5c0514d764fad410ef4b283e98, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6cea3973d184bb45a9e0434cb08785b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1290483968499606179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4121768693517471404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a4c2e06fdfcee45959540fd5f7bc66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DebrisPrefab: {fileID: 3427449700166261544}
+  m_ChildScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_RandomSpeed: 3.25
+  m_MaxDebrisTorque: 46.4
 --- !u!1 &7654114602127704220
 GameObject:
   m_ObjectHideFlags: 0

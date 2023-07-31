@@ -4904,10 +4904,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LifeTime: 2
-  m_Damage: 201
   m_Radius: 2.8
-  m_SelfDamage: 0
-  m_Ship: {fileID: 0}
+  m_Projectile: {fileID: 2538873075189020662, guid: 6d6818ee546614a41ae9e5902bc40f6b, type: 3}
 --- !u!199 &8299097853406976454
 ParticleSystemRenderer:
   serializedVersion: 6

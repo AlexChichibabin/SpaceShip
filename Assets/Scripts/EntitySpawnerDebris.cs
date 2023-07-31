@@ -14,16 +14,18 @@ namespace SpaceShip
 
         [SerializeField] private float m_RandomSpeed;
 
+        [SerializeField] private float m_MaxDebrisTorque;
+
         private void Start()
         {
             for (int i = 0; i < m_NumDebris; i++)
             {
-                SpawnDebris(i);
+                SpawnDebris();
             }
 
         }
 
-        private void SpawnDebris(int i)
+        private void SpawnDebris()
         {
             int index = Random.Range(0, m_DebrisPrefabs.Length);
 
@@ -31,21 +33,24 @@ namespace SpaceShip
 
             debris.transform.position = m_Area.GetRandomInsideZone();
             debris.GetComponent<Destructible>().EventOnDeath.AddListener(OnDebrisDead);
-            debris.AddComponent<LevelBoundaryLimiter>();
-            debris.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360) * i));
+            //debris.AddComponent<LevelBoundaryLimiter>();
+            debris.transform.Rotate(new Vector3(0, 0, Random.Range(0, 360)));
+                //rotation = Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360) * i));
 
             Rigidbody2D rb = debris.GetComponent<Rigidbody2D>();
 
             if (rb != null && m_RandomSpeed > 0)
             {
                 rb.velocity = (Vector2)UnityEngine.Random.insideUnitSphere * m_RandomSpeed;
+                rb.AddTorque(Random.Range(-m_MaxDebrisTorque, m_MaxDebrisTorque));
             }
-
         }
+
+
 
         private void OnDebrisDead()
         {
-            SpawnDebris(Random.Range(0, 3));
+            SpawnDebris();
         }
     }
 }
