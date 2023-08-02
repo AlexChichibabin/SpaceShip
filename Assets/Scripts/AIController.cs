@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using System;
 
 namespace SpaceShip
 {
@@ -78,7 +79,24 @@ namespace SpaceShip
 
         private void ActionControlShip()
         {
+            m_Ship.ThrustControl = m_NavigationLinear;
 
+            ComputeAlignTorqueNormalized(new Vector3(-15, 4, 0), m_Ship.transform);
+        }
+
+        private static float ComputeAlignTorqueNormalized(Vector3 targetPosition, Transform ship)
+        {
+            Vector2 localTargetPosition = ship.InverseTransformPoint(targetPosition);
+
+            float angle = Vector3.SignedAngle(localTargetPosition, Vector3.up, Vector3.forward);
+
+            Debug.Log(angle);
+
+            angle = Mathf.Clamp(angle, -45, 45) / 45;
+
+            
+
+            return -angle;
         }
 
         private void ActionFindNewAttackTarget()
