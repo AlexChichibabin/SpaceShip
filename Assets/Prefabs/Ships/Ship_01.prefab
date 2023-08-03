@@ -485,7 +485,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -518,9 +518,9 @@ MonoBehaviour:
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls: []
-  m_Mass: 1
-  m_Thrust: 125
-  m_Mobility: 90
+  m_Mass: 0.5
+  m_Thrust: 200
+  m_Mobility: 100
   m_MaxLinearVelocity: 10
   m_MaxAngularVelocity: 290
   m_PrefabExplosion: {fileID: 5882623345967159021, guid: f38cd4e2a8dc3cc47818ef3ba2c2fe5c, type: 3}

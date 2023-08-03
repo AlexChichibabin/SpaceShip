@@ -472,7 +472,7 @@ Transform:
   - {fileID: 5191926750403742516}
   - {fileID: 2052605203353045976}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &8194402897993335843
 Rigidbody2D:
@@ -519,9 +519,9 @@ MonoBehaviour:
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls: []
-  m_Mass: 1
-  m_Thrust: 125
-  m_Mobility: 90
+  m_Mass: 0.5
+  m_Thrust: 1000
+  m_Mobility: 500
   m_MaxLinearVelocity: 10
   m_MaxAngularVelocity: 290
   m_PrefabExplosion: {fileID: 5882623345967159021, guid: f38cd4e2a8dc3cc47818ef3ba2c2fe5c, type: 3}
@@ -571,12 +571,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AIBehaviour: 1
-  m_NavigationLinear: 0
-  m_NavigationAngular: 0
-  m_RandomSelectMovePointTime: 0
+  m_PatrolPoint: {fileID: 0}
+  m_NavigationLinear: 0.226
+  m_NavigationAngular: 0.821
+  m_RandomSelectMovePointTime: 6.47
   m_FindNewTargetTime: 0
   m_ShootDelay: 0
   m_EvadeRayLength: 0
-  m_Ship: {fileID: 4394333794494404642}
-  m_MovePosition: {x: 0, y: 0, z: 0}
-  m_SelectedTarget: {fileID: 0}

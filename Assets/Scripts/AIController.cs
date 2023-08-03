@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using System;
 
 namespace SpaceShip
 {
@@ -15,6 +14,8 @@ namespace SpaceShip
         }
 
         [SerializeField] private AIBehaviour m_AIBehaviour;
+
+        [SerializeField] private AIPointPatrol m_PatrolPoint;
 
         [Range(0.0f, 1.0f)]
         [SerializeField] private float m_NavigationLinear;
@@ -30,11 +31,13 @@ namespace SpaceShip
 
         [SerializeField] private float m_EvadeRayLength;
 
-        [SerializeField] private Ship m_Ship;
+        private Ship m_Ship;
 
-        [SerializeField] private Vector3 m_MovePosition;
+        private Vector3 m_MovePosition;
 
-        [SerializeField] private Destructible m_SelectedTarget;
+        private Destructible m_SelectedTarget;
+
+        private Timer m_RandomizeDirectionTimer;
 
 
         private void Start()
@@ -58,7 +61,7 @@ namespace SpaceShip
 
             }
 
-            if (m_AIBehaviour != AIBehaviour.Patrol)
+            if (m_AIBehaviour == AIBehaviour.Patrol)
             {
                 UpdateBehaviourPatrol();
             }
@@ -74,27 +77,58 @@ namespace SpaceShip
 
         private void ActionFindNewMovePosition()
         {
+            if (m_AIBehaviour == AIBehaviour.Patrol)
+            {
+                if (m_SelectedTarget != null)
+                {
+                    m_MovePosition = m_SelectedTarget.transform.position;
+                }
+                else
+                {
+                    if (m_PatrolPoint != null)
+                    {
+                        bool isInsidePatrolZone = (m_PatrolPoint.transform.position - transform.position).sqrMagnitude < m_PatrolPoint.Radius * m_PatrolPoint.Radius;
 
+                        if (isInsidePatrolZone == true)
+                        {
+                            if (m_RandomizeDirectionTimer.IsFinished == true)
+                            {
+                                Vector2 newPoint = UnityEngine.Random.onUnitSphere * m_PatrolPoint.Radius + m_PatrolPoint.transform.position;
+
+                                Debug.Log((newPoint- (Vector2)m_PatrolPoint.transform.position).magnitude);
+
+                                m_MovePosition = newPoint;
+
+                                m_RandomizeDirectionTimer.Start(m_RandomSelectMovePointTime);
+                            }
+                        }
+                        else
+                        {
+                            m_MovePosition = m_PatrolPoint.transform.position;
+                        }
+                    }
+                }
+            }
         }
 
         private void ActionControlShip()
         {
             m_Ship.ThrustControl = m_NavigationLinear;
 
-            ComputeAlignTorqueNormalized(new Vector3(-15, 4, 0), m_Ship.transform);
+            m_Ship.TorqueControl = ComputeAlignTorqueNormalized(m_MovePosition, m_Ship.transform) * m_NavigationAngular;
         }
 
+        private const float MAX_ANGLE = 45.0f;
+        
         private static float ComputeAlignTorqueNormalized(Vector3 targetPosition, Transform ship)
         {
             Vector2 localTargetPosition = ship.InverseTransformPoint(targetPosition);
 
             float angle = Vector3.SignedAngle(localTargetPosition, Vector3.up, Vector3.forward);
 
-            Debug.Log(angle);
+            angle = Mathf.Clamp(angle, -MAX_ANGLE, MAX_ANGLE) / MAX_ANGLE;
 
-            angle = Mathf.Clamp(angle, -45, 45) / 45;
-
-            
+            //Debug.Log(angle);
 
             return -angle;
         }
@@ -109,15 +143,21 @@ namespace SpaceShip
 
         }
 
+        public void SetPatrolBehaviour(AIPointPatrol point)
+        {
+            m_AIBehaviour = AIBehaviour.Patrol;
+            m_PatrolPoint = point;
+        }
+
         #region Timers
         private void InitTimers()
         {
-
+            m_RandomizeDirectionTimer = new Timer(m_RandomSelectMovePointTime);
         }
 
         private void UpdateTimers()
         {
-
+            m_RandomizeDirectionTimer.RemoveTime(Time.deltaTime);
         }
         #endregion
 
