@@ -1983,6 +1983,7 @@ MonoBehaviour:
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls: []
+  m_TeamId: 0
 --- !u!4 &1461590361
 Transform:
   m_ObjectHideFlags: 0

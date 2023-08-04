@@ -73,6 +73,7 @@ namespace SpaceShip
             ActionControlShip();
             ActionFindNewAttackTarget();
             ActionFire();
+            ActionEvadeCollision();
         }
 
         private void ActionFindNewMovePosition()
@@ -108,6 +109,14 @@ namespace SpaceShip
                         }
                     }
                 }
+            }
+        }
+
+        private void ActionEvadeCollision()
+        {
+            if (Physics2D.Raycast(transform.position, transform.up, m_EvadeRayLength))
+            {
+                m_MovePosition = transform.position + transform.right * 100.0f;
             }
         }
 

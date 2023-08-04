@@ -189,6 +189,7 @@ namespace SpaceShip
 
         #region Indestructibility
         private float m_IndestructibilityTimer;
+        
         private void CheckIndestructibility()
         {
             if (m_IndestructibilityTimer > 0)
@@ -197,7 +198,10 @@ namespace SpaceShip
             }
             if (m_IndestructibilityTimer <= 0)
             {
-                SetIndestructibility(false);
+                if (IsIndestructible == true && IndestructibleIsTimed == true)
+                {
+                    SetIndestructibility(false);
+                }
             }
         }
         #endregion
