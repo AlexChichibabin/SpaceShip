@@ -26,10 +26,12 @@ namespace SpaceShip
         /// maximum linear speed
         /// </summary>
         [SerializeField] private float m_MaxLinearVelocity;
+        public float MaxLinearVelocity => m_MaxLinearVelocity;
         /// <summary>
         /// maximum rotate speed
         /// </summary>
         [SerializeField] private float m_MaxAngularVelocity;
+        public float MaxAngularVelocity => m_MaxAngularVelocity;
 
         /// <summary>
         /// saved link for rigid

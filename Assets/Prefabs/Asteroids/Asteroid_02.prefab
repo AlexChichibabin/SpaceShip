@@ -218,6 +218,8 @@ MonoBehaviour:
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls: []
+  m_TeamId: 0
+  m_ScoreValue: 10
 --- !u!114 &8868028172715623972
 MonoBehaviour:
   m_ObjectHideFlags: 0

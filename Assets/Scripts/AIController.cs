@@ -146,7 +146,7 @@ namespace SpaceShip
                 if (m_SelectedTarget != null) // Если есть цель атаки
                 {
                     m_MovePosition = m_SelectedTarget.transform.position;
-                    Debug.Log("SelectedTarget" + m_SelectedTarget);
+                    //Debug.Log("SelectedTarget" + m_SelectedTarget);
                 }
                 else // Если нет цели атаки
                 {
@@ -201,7 +201,7 @@ namespace SpaceShip
             angle = Mathf.Clamp(angle, -90, 90);
 
 
-            Debug.Log(angle);
+            //Debug.Log(angle);
 
             if (hit != null && m_EvadeCollisionTimer.IsFinished == true)
             {

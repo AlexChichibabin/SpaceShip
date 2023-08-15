@@ -21,6 +21,7 @@ namespace SpaceShip
         /// start hitpoints amount
         /// </summary>
         [SerializeField] private int m_HitPoints;
+        public int HitPoints => m_HitPoints;
 
         /// <summary>
         /// current hitpoints amount
@@ -111,5 +112,10 @@ namespace SpaceShip
 
         [SerializeField] private int m_TeamId;
         public int TeamId => m_TeamId;
+
+        #region Score
+        [SerializeField] private int m_ScoreValue;
+        public int ScoreValue => m_ScoreValue;
+        #endregion
     }
 }

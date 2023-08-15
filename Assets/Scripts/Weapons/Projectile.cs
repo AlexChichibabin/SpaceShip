@@ -36,6 +36,11 @@ namespace SpaceShip
                     if (m_ImpactExplosionPrefab == null)
                     {
                         dest.ApplyDamage(m_Damage);
+
+                        if (m_Parent == Player.Instance.ActiveShip)
+                        {
+                            Player.Instance.AddScore(dest.ScoreValue);
+                        }
                     }
                 }
                 OnProjectileLifeEnd(hit.collider, hit.point);
