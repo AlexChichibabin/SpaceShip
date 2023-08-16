@@ -7,6 +7,7 @@ namespace SpaceShip
     public class LevelConditionScore : MonoBehaviour, ILevelCondition
     {
         [SerializeField] private int score;
+        [SerializeField] private int numKills;
 
         private bool m_Reached;
 
@@ -16,7 +17,7 @@ namespace SpaceShip
             {
                 if (Player.Instance != null && Player.Instance.ActiveShip != null)
                 {
-                    if (Player.Instance.Score >= score)
+                    if (Player.Instance.NumKills >= numKills || Player.Instance.NumKills >= numKills)
                     {
                         m_Reached = true; 
                     }

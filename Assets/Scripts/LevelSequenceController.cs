@@ -13,7 +13,11 @@ namespace SpaceShip
 
         public int CurrentLevel { get; private set; }
 
+        public bool LastLevelResult { get; private set; }
+
         public static Ship PlayerShip { get; set; }
+
+        public PlayerStatistics LevelStatistics { get; private set; }
 
         public void StartEpisode(Episode episode)
         {
@@ -21,6 +25,8 @@ namespace SpaceShip
             CurrentLevel = 0;
 
             //сбрасываем статы перед началом эпизода
+            LevelStatistics = new PlayerStatistics();
+            LevelStatistics.Reset();
 
             SceneManager.LoadScene(episode.Levels[CurrentLevel]);
         }
@@ -32,11 +38,16 @@ namespace SpaceShip
 
         public void FinishCurrentLevel(bool success)
         {
-            if (success) AdvanceLevel();
+            //if (success) AdvanceLevel();
+            LastLevelResult = success;
+            CalculateLevelStatistic();
+
+            ResultPanelController.Instance.ShowResults(LevelStatistics, success);
         }
 
         public void AdvanceLevel()
         {
+            LevelStatistics.Reset();
             CurrentLevel++;
 
             if (CurrentEpisode.Levels.Length <= CurrentLevel)
@@ -47,6 +58,13 @@ namespace SpaceShip
             {
                 SceneManager.LoadScene(CurrentEpisode.Levels[CurrentLevel]);
             }
+        }
+
+        private void CalculateLevelStatistic()
+        {
+            LevelStatistics.NumKills = Player.Instance.NumKills;
+            LevelStatistics.Scores = Player.Instance.Score;
+            LevelStatistics.Time = (int)LevelController.Instance.LevelTime;
         }
     }
 }

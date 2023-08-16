@@ -27,11 +27,6 @@ namespace SpaceShip
             LevelSequenceController.Instance.StartEpisode(m_Episode);
         }
 
-        /*public void OnButtonBack()
-        {
-            //m_MainMenuPanel.SetActive(true);
-            gameObject.SetActive(false);
-        }*/
 
         public void OnButtonBackFromEpisodeSelection()
         {

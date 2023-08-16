@@ -39,6 +39,8 @@ namespace SpaceShip
         private Rigidbody2D m_Rigid;
         [SerializeField] private GameObject m_PrefabExplosion;
 
+        
+
         #region Unity Events
         protected override void Start()
         {
