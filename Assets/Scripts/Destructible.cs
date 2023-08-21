@@ -35,6 +35,8 @@ namespace SpaceShip
         private Vector3 m_LastPosition;
         public Vector3 LastPosition => m_LastPosition;
 
+        [SerializeField] private int m_HitPointRegenPerSecond;
+
         #endregion
 
         #region Unity Events
@@ -44,15 +46,20 @@ namespace SpaceShip
             m_CurrentHitPoints = m_HitPoints;
         }
 
-        #endregion
+        private void Update()
+        {
+            UpdateHealthRegen();
+        }
 
-        #region Public API
+            #endregion
 
-        /// <summary>
-        /// apply damage to object
-        /// </summary>
-        /// <param name="damage"></param>
-        public void ApplyDamage(int damage)
+            #region Public API
+
+            /// <summary>
+            /// apply damage to object
+            /// </summary>
+            /// <param name="damage"></param>
+            public void ApplyDamage(int damage)
         {
             if (m_Indestructible) return;
 
@@ -64,6 +71,17 @@ namespace SpaceShip
             }
         }
 
+        private float additionalHP = 0.0f;
+        private void UpdateHealthRegen()
+        {
+            additionalHP += (float)m_HitPointRegenPerSecond * Time.deltaTime;
+            if (additionalHP > 1)
+            {
+                m_CurrentHitPoints = Mathf.Clamp((m_CurrentHitPoints + (int)additionalHP), 0, m_HitPoints);
+                additionalHP -= (int)additionalHP;
+            }
+          
+        }
 
         private bool m_IndestructibleTimed = false;
         public bool IndestructibleIsTimed => m_IndestructibleTimed;
@@ -105,7 +123,7 @@ namespace SpaceShip
 
         protected virtual void OnDestroy()
         {
-            m_AllDestructibles.Remove(this);
+            if(this != null && m_AllDestructibles != null) m_AllDestructibles.Remove(this);
         }
 
         public const int TeamIdNeutral = 0;

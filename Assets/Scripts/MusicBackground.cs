@@ -8,6 +8,13 @@ namespace SpaceShip
 {
     public class MusicBackground : SingletonBase<MusicBackground>
     {
-        private float m_Empty;
+        [SerializeField] private AudioSource m_Sourse;
+        [SerializeField] private AudioClip m_Music;
+
+        private void Start()
+        {
+            m_Sourse.clip = m_Music;
+            m_Sourse.Play();
+        }
     }
 }

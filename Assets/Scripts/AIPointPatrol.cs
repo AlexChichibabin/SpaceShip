@@ -16,6 +16,7 @@ namespace SpaceShip
 
 
 
+        #if UNITY_EDITOR
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = GizmoColor;
@@ -32,10 +33,6 @@ namespace SpaceShip
                 }
             }
         }
-
-        private void Start()
-        {
-            
-        }
+        #endif
     }
 }

@@ -19,15 +19,19 @@ namespace SpaceShip
 
         public PlayerStatistics LevelStatistics { get; private set; }
 
+        public TotalStatistics MainStatistics { get; private set; }
+
         public void StartEpisode(Episode episode)
         {
             CurrentEpisode = episode;
             CurrentLevel = 0;
 
             //сбрасываем статы перед началом эпизода
-            LevelStatistics = new PlayerStatistics();
+            LevelStatistics = PlayerStatistics.Instance;
             LevelStatistics.Reset();
+            MainStatistics = TotalStatistics.Instance;
 
+            if (CurrentEpisode.Levels.Length > 0 && CurrentEpisode.Levels[CurrentLevel] != null)
             SceneManager.LoadScene(episode.Levels[CurrentLevel]);
         }
 
@@ -38,9 +42,11 @@ namespace SpaceShip
 
         public void FinishCurrentLevel(bool success)
         {
-            //if (success) AdvanceLevel();
             LastLevelResult = success;
             CalculateLevelStatistic();
+            CalculateMainStatistic();
+            MainStatistics.SaveMainStatistic();
+            PlayerPrefs.Save();
 
             ResultPanelController.Instance.ShowResults(LevelStatistics, success);
         }
@@ -66,5 +72,12 @@ namespace SpaceShip
             LevelStatistics.Scores = Player.Instance.Score;
             LevelStatistics.Time = (int)LevelController.Instance.LevelTime;
         }
+        private void CalculateMainStatistic()
+        {
+            MainStatistics.TotalNumKills += Player.Instance.NumKills;
+            MainStatistics.TotalScores += Player.Instance.Score;
+            MainStatistics.TotalTime += (int)LevelController.Instance.LevelTime;
+        }
+
     }
 }

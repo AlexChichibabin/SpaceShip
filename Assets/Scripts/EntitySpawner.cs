@@ -34,7 +34,7 @@ namespace SpaceShip
                 m_Timer -= Time.deltaTime;
             }
 
-            if (m_SpawnMode == SpawnMode.Loop && m_Timer < 0)
+            if (m_SpawnMode == SpawnMode.Loop && m_Timer <= 0)
             {
                 SpawnEntities();
 

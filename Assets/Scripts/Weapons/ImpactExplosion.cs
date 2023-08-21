@@ -35,7 +35,7 @@ namespace SpaceShip
                             if (m_Parent == Player.Instance.ActiveShip)
                             {
                                 Player.Instance.AddScore(dest.ScoreValue * 2); // (2) More scores for explosion, than for common projectile
-                                if (dest.CurrentHitPoints <= 0) Player.Instance.AddKill();
+                                if (dest.CurrentHitPoints <= 0 && dest.TeamId != 0 && dest != Player.Instance.ActiveShip) Player.Instance.AddKill();
                             }
                         }
                     }
@@ -49,11 +49,11 @@ namespace SpaceShip
             m_Parent = parent;
         }
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         private void OnValidate()
         {
             GetComponent<CircleCollider2D>().radius = m_Radius;
         }
+        #endif
     }
-#endif
 }

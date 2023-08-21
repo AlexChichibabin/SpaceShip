@@ -36,14 +36,14 @@ namespace SpaceShip
                 {
                     if (m_ImpactExplosionPrefab == null)
                     {
-                        if (m_Parent.CurrentHitPoints > 0 && m_Parent != null)
+                        if (m_Parent != null)
                         {
                             dest.ApplyDamage(m_Damage);
 
                             if (m_Parent == Player.Instance.ActiveShip)
                             {
                                 Player.Instance.AddScore(dest.ScoreValue);
-                                if (dest.CurrentHitPoints <= 0) Player.Instance.AddKill();
+                                if (dest.CurrentHitPoints <= 0 && dest.TeamId != 0 && dest != Player.Instance.ActiveShip) Player.Instance.AddKill();
                             }
                         }
                     }

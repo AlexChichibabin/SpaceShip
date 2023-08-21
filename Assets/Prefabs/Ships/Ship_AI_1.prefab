@@ -516,6 +516,7 @@ MonoBehaviour:
   m_Nickname: Protagonist
   m_Indestructible: 0
   m_HitPoints: 200
+  m_HitPointRegenPerSecond: 0
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls: []
@@ -527,6 +528,7 @@ MonoBehaviour:
   m_MaxLinearVelocity: 10
   m_MaxAngularVelocity: 290
   m_PrefabExplosion: {fileID: 5882623345967159021, guid: f38cd4e2a8dc3cc47818ef3ba2c2fe5c, type: 3}
+  m_Inertia: 0
   m_Turrets:
   - {fileID: 5637069743370974440}
   - {fileID: 4090073970749403307}
@@ -573,14 +575,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AIBehaviour: 1
-  m_PatrolPoint: {fileID: 6996397082021956071, guid: f1e43ea2c4f5b5b4d821cc8bebe36f5d, type: 3}
+  m_PatrolPoint: {fileID: 1577261358606068297, guid: 692d65343ae5f0f4abd40bfdf40362d6, type: 3}
   m_NavigationLinear: 0.226
   m_NavigationAngular: 0.821
   m_RandomSelectMovePointTime: 5.53
   m_FindNewTargetTime: 2
-  m_EvadeCollisionTime: 0
+  m_EvadeCollisionTime: 2
   m_ShootDelay: 1
-  m_EvadeRadius: 1.87
+  m_EvadeRadius: 6
   m_ShootDistance: 20
   m_EnemyDetectDistance: 20
+  m_StartTime: 2
   m_PatrolPointAccuracy: 2

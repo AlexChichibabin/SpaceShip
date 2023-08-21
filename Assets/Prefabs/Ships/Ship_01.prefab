@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Mode: 1
-  m_FireDelay: 0
-  m_TurretProperties: {fileID: 0}
+  m_FireDelay: 2
+  m_TurretProperties: {fileID: 11400000, guid: df04a01ed6bb086448b96d3e19d27998, type: 2}
   m_FireSource: {fileID: 6314328125247195456}
-  m_ImpactSoundPrimary: {fileID: 0}
+  m_ImpactSoundPrimary: {fileID: 1574419404618108747, guid: 6d6818ee546614a41ae9e5902bc40f6b, type: 3}
   m_ImpactSoundSecondary: {fileID: 7258211854605291204, guid: c1428565ae4af57498fa90a6b63bcea3, type: 3}
 --- !u!1 &1295373586489024506
 GameObject:
@@ -518,17 +518,19 @@ MonoBehaviour:
   m_Nickname: Protagonist
   m_Indestructible: 0
   m_HitPoints: 300
+  m_HitPointRegenPerSecond: 3
   m_EventOnDeath:
     m_PersistentCalls:
       m_Calls: []
-  m_TeamId: 0
+  m_TeamId: 3
   m_ScoreValue: 0
   m_Mass: 0.5
   m_Thrust: 200
   m_Mobility: 100
-  m_MaxLinearVelocity: 10
-  m_MaxAngularVelocity: 290
+  m_MaxLinearVelocity: 15
+  m_MaxAngularVelocity: 80
   m_PrefabExplosion: {fileID: 5882623345967159021, guid: f38cd4e2a8dc3cc47818ef3ba2c2fe5c, type: 3}
+  m_Inertia: 0.1
   m_Turrets:
   - {fileID: 2821783139057989564}
   - {fileID: 1819176540182073724}

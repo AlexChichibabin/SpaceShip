@@ -8,6 +8,7 @@ namespace SpaceShip
     {
         [SerializeField] private GameObject m_EpisodeSelectionPanel;
         [SerializeField] private GameObject m_ShipSelectionPanel;
+        [SerializeField] private GameObject m_StatisticsPanel;
         [SerializeField] private Ship m_DefaultShip;
 
         private void Start()
@@ -23,6 +24,11 @@ namespace SpaceShip
         public void OnButtonSelectShip()
         {
             m_ShipSelectionPanel.SetActive(true);
+            gameObject.SetActive(false);
+        }
+        public void OnButtonStatistics()
+        {
+            m_StatisticsPanel.SetActive(true);
             gameObject.SetActive(false);
         }
         public void OnButtonExit()
