@@ -14,9 +14,21 @@ namespace SpaceShip
         [SerializeField] private CameraController m_CameraController;
         [SerializeField] private MovementController m_MovementController;
 
+        protected override void Awake()
+        {
+            base.Awake();
+
+            if (m_Ship != null)
+            {
+                Destroy(m_Ship.gameObject);
+            }
+        }
+
         private void Start()
         {
             m_Ship.EventOnDeath.AddListener(OnShipDeath);
+
+            Respawn();
         }
 
         private void OnShipDeath()
@@ -27,17 +39,37 @@ namespace SpaceShip
             {
                 Respawn();
             }
+            else LevelSequenceController.Instance.FinishCurrentLevel(false);
         }
 
         private void Respawn()
         {
-            var newPlayerShip = Instantiate(m_PlayerShipPrefab);
+            if (LevelSequenceController.PlayerShip != null)
+            {
+                var newPlayerShip = Instantiate(LevelSequenceController.PlayerShip);
 
-            m_Ship = newPlayerShip.GetComponent<Ship>();
-            m_CameraController.SetTarget(m_Ship.transform);
-            m_MovementController.SetTargetShip(m_Ship);
-            m_Ship.EventOnDeath.AddListener(OnShipDeath);
+                m_Ship = newPlayerShip.GetComponent<Ship>();
+                m_CameraController.SetTarget(m_Ship.transform);
+                m_MovementController.SetTargetShip(m_Ship);
+                m_Ship.EventOnDeath.AddListener(OnShipDeath);
+            }
         }
+
+        #region Score
+        public int Score { get; private set; }
+        public int NumKills { get; private set; }
+
+        public void AddKill()
+        {
+            NumKills++;
+        }
+
+        public void AddScore(int num)
+        {
+            Score += num;
+        }
+
+        #endregion
 
     }
 }

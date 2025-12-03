@@ -24,11 +24,11 @@ namespace SpaceShip
                 collision.attachedRigidbody.AddForce(force, ForceMode2D.Force);
             }
         }
-    #if UNITY_EDITOR
+        #if UNITY_EDITOR
         private void OnValidate()
         {
             GetComponent<CircleCollider2D>().radius = m_Radius;
         }
+        #endif
     }
-    #endif
 }

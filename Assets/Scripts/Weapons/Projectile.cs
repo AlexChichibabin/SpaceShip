@@ -15,6 +15,7 @@ namespace SpaceShip
         [SerializeField] private float m_DirSensity;
         private GameObject m_RocketTarget;
         [SerializeField] private CircleArea m_Area;
+        [SerializeField] private bool isPlayer;
 
 
 
@@ -35,7 +36,16 @@ namespace SpaceShip
                 {
                     if (m_ImpactExplosionPrefab == null)
                     {
-                        dest.ApplyDamage(m_Damage);
+                        if (m_Parent != null)
+                        {
+                            dest.ApplyDamage(m_Damage);
+
+                            if (m_Parent == Player.Instance.ActiveShip)
+                            {
+                                Player.Instance.AddScore(dest.ScoreValue);
+                                if (dest.CurrentHitPoints <= 0 && dest.TeamId != 0 && dest != Player.Instance.ActiveShip) Player.Instance.AddKill();
+                            }
+                        }
                     }
                 }
                 OnProjectileLifeEnd(hit.collider, hit.point);
@@ -46,6 +56,29 @@ namespace SpaceShip
 
             transform.position += new Vector3(step.x, step.y, 0);
 
+            ControllRocket();
+        }
+
+        private void OnProjectileLifeEnd(Collider2D col, Vector2 pos)
+        {
+            if (m_ImpactExplosionPrefab != null)
+            {
+                ImpactExplosion expl = Instantiate(m_ImpactExplosionPrefab, pos, Quaternion.identity);
+                expl.SetParentShooter(m_Parent);
+            }
+
+            Destroy(gameObject);
+        }
+
+        private Destructible m_Parent;
+
+        public void SetParentShooter(Destructible parent)
+        {
+            m_Parent = parent;
+        }
+
+        private void ControllRocket()
+        {
             if (IsSelfDirected == true)
             {
                 if (m_RocketTarget == null)
@@ -57,23 +90,6 @@ namespace SpaceShip
                     CorrectDirection();
                 }
             }
-        }
-
-        private void OnProjectileLifeEnd(Collider2D col, Vector2 pos)
-        {
-            if (m_ImpactExplosionPrefab != null)
-            {
-                Instantiate(m_ImpactExplosionPrefab, pos, Quaternion.identity);
-            }
-
-            Destroy(gameObject);
-        }
-
-        private Destructible m_Parent;
-
-        public void SetParentShooter(Destructible parent)
-        {
-            m_Parent = parent;
         }
 
         private void GetTarget()

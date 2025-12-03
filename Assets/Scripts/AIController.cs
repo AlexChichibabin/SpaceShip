@@ -39,6 +39,8 @@ namespace SpaceShip
 
         [SerializeField] private float m_EnemyDetectDistance;
 
+        [SerializeField] private float m_StartTime;
+
         //[SerializeField] private Vector3[] m_SpecifiedPositions;
 
         private int m_PatrolPointNumber;
@@ -55,6 +57,7 @@ namespace SpaceShip
         private Timer m_EvadeCollisionTimer;
         private Timer m_FireTimer;
         private Timer m_FindNewTargetTimer;
+        private Timer m_StartTimer;
 
 
         private void Start()
@@ -64,6 +67,8 @@ namespace SpaceShip
             InitTimers();
 
             InitPatrolPoint();
+
+            //m_AIBehaviour = AIBehaviour.Null;
         }
 
         private void Update()
@@ -71,15 +76,13 @@ namespace SpaceShip
             UpdateTimers();
 
             UpdateAI();
-
-            
         }
 
         private void UpdateAI()
         {
             if (m_AIBehaviour == AIBehaviour.Null)
             {
-
+                if (m_StartTimer.IsFinished == true) m_AIBehaviour = AIBehaviour.Patrol;
             }
 
             if (m_AIBehaviour == AIBehaviour.Patrol)
@@ -104,7 +107,7 @@ namespace SpaceShip
 
         private void FixedUpdate()
         {
-            //Debug.Log(m_MovePosition);
+            
         }
 
 
@@ -146,7 +149,7 @@ namespace SpaceShip
                 if (m_SelectedTarget != null) // Если есть цель атаки
                 {
                     m_MovePosition = m_SelectedTarget.transform.position;
-                    Debug.Log("SelectedTarget" + m_SelectedTarget);
+                    //Debug.Log("SelectedTarget" + m_SelectedTarget);
                 }
                 else // Если нет цели атаки
                 {
@@ -201,7 +204,7 @@ namespace SpaceShip
             angle = Mathf.Clamp(angle, -90, 90);
 
 
-            Debug.Log(angle);
+            //Debug.Log(angle);
 
             if (hit != null && m_EvadeCollisionTimer.IsFinished == true)
             {
@@ -215,12 +218,6 @@ namespace SpaceShip
                 }
                 m_EvadeCollisionTimer.Start(m_EvadeCollisionTime);
             }
-
-            /*if (m_EvadeCollisionTimer.IsFinished == true)
-            {
-                //hit = null;
-                m_EvadeCollisionTimer.Start(m_EvadeCollisionTime);
-            }*/
         }
 
 
@@ -247,12 +244,16 @@ namespace SpaceShip
 
         private void ActionFindNewAttackTarget()
         {
-            if (m_FindNewTargetTimer.IsFinished == true)
+            if (m_AIBehaviour != AIBehaviour.Null)
             {
-                m_SelectedTarget = FindNearestDestructibleTarget();
+                if (m_FindNewTargetTimer.IsFinished == true)
+                {
+                    m_SelectedTarget = FindNearestDestructibleTarget();
 
-                m_FindNewTargetTimer.Start(m_FindNewTargetTime);
+                    m_FindNewTargetTimer.Start(m_FindNewTargetTime);
+                }
             }
+            
         }
 
         private Destructible FindNearestDestructibleTarget()
@@ -322,6 +323,7 @@ namespace SpaceShip
             m_FireTimer = new Timer(0);
             m_FindNewTargetTimer = new Timer(0);
             m_EvadeCollisionTimer = new Timer(0);
+            m_StartTimer = new Timer(0);
         }
 
         private void UpdateTimers()
@@ -330,6 +332,7 @@ namespace SpaceShip
             m_FireTimer.RemoveTime(Time.deltaTime);
             m_FindNewTargetTimer.RemoveTime(Time.deltaTime);
             m_EvadeCollisionTimer.RemoveTime(Time.deltaTime);
+            m_StartTimer.RemoveTime(Time.deltaTime);
         }
         #endregion
 

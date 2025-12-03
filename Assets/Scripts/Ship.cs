@@ -26,10 +26,12 @@ namespace SpaceShip
         /// maximum linear speed
         /// </summary>
         [SerializeField] private float m_MaxLinearVelocity;
+        public float MaxLinearVelocity => m_MaxLinearVelocity;
         /// <summary>
         /// maximum rotate speed
         /// </summary>
         [SerializeField] private float m_MaxAngularVelocity;
+        public float MaxAngularVelocity => m_MaxAngularVelocity;
 
         /// <summary>
         /// saved link for rigid
@@ -37,13 +39,17 @@ namespace SpaceShip
         private Rigidbody2D m_Rigid;
         [SerializeField] private GameObject m_PrefabExplosion;
 
+        //[SerializeField] private float m_Inertia;
+
+        
+
         #region Unity Events
         protected override void Start()
         {
             base.Start();
             m_Rigid = GetComponent<Rigidbody2D>();
             m_Rigid.mass = m_Mass;
-            m_Rigid.inertia = 1;
+            m_Rigid.inertia = 0.1f;
 
             InitOffensive();
         }
@@ -85,11 +91,12 @@ namespace SpaceShip
         /// torque control. from -1.0 to +1.0
         /// </summary>
         public float TorqueControl { get; set; }
+
         public void Fire(TurretMode mode)
         {
             for (int i = 0; i < m_Turrets.Length; i++)
             {
-                if (m_Turrets[i].Mode == mode)
+                if (m_Turrets[i] != null && m_Turrets[i].Mode == mode)
                 {
                     m_Turrets[i].Fire();
                 }
@@ -161,11 +168,17 @@ namespace SpaceShip
         #region EnergyAmmoWeapons
         [SerializeField] private Turret[] m_Turrets;
         [SerializeField] private int m_MaxEnergy;
+        public int MaxEnergy => m_MaxEnergy;
         [SerializeField] private int m_MaxAmmo;
+        public int MaxAmmo => m_MaxAmmo;
         [SerializeField] private int m_EnergyRegenPerSecond;
 
         private float m_PrimaryEnergy;
+        public float PrimaryEnergy => m_PrimaryEnergy;
+
+
         private int m_SecondaryAmmo;
+        public int SecondaryAmmo => m_SecondaryAmmo;
 
         private void InitOffensive()
         {
@@ -174,7 +187,6 @@ namespace SpaceShip
         }
         private void UpdateEnergyRegen()
         {
-            //m_PrimaryEnergy += (float)m_EnergyRegenPerSecond * Time.fixedDeltaTime;
             m_PrimaryEnergy = Mathf.Clamp(m_PrimaryEnergy + (float)m_EnergyRegenPerSecond * Time.fixedDeltaTime, 0, m_MaxEnergy);
         }
 

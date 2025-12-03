@@ -53,8 +53,9 @@ MonoBehaviour:
   m_Damage: 500
   m_ImpactExplosionPrefab: {fileID: 79406218444650591, guid: a1cdcb431849add449a6d225e70a1c04, type: 3}
   IsSelfDirected: 1
-  m_DirSensity: 5
+  m_DirSensity: 8
   m_Area: {fileID: 5268323679395703150}
+  isPlayer: 0
 --- !u!114 &5268323679395703150
 MonoBehaviour:
   m_ObjectHideFlags: 0
